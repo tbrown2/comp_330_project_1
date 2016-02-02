@@ -5,5 +5,4 @@ public class mention extends linkables {
 		super(s, l, t);
 		// Auto-generated constructor stub
 	}
-
 }
