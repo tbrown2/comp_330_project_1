@@ -27,37 +27,38 @@ Taken from https://www.hashtags.org/featured/twitter-for-beginners-basic-guideli
 - a tweet can be pinned at the top of your page
 - a hashtag is a # immediately followed by a word or phrase, When you click on a hashtag, you'll see other Tweets containing the same keyword or topic.
 - users can respond to a tweet and reply to one another (out of scope)
+
 #Classes
 
 ##TweetParser
 
-	 Creates tweet object when given a string, parses the string and depending on the requirements will set attributes of the tweet.Ideally the tweet parser works in real time, in this case you could use an abstract syntax tree or a parsing tree while a user types and then create linkable objects on the fly, after a user presses enter then the tweet object gets created and all the attributes are set. However, for this project I am assuming that the user has already written a "tweet" in the form of a string, and the tweetParser object matches attributes not in realtime. While this is not ideal I feel that it matches the specifications of the project, and the time given to us for completion. 
+Creates tweet object when given a string, parses the string and depending on the requirements will set attributes of the tweet.Ideally the tweet parser works in real time, in this case you could use an abstract syntax tree or a parsing tree while a user types and then create linkable objects on the fly, after a user presses enter then the tweet object gets created and all the attributes are set. However, for this project I am assuming that the user has already written a "tweet" in the form of a string, and the tweetParser object matches attributes not in realtime. While this is not ideal I feel that it matches the specifications of the project, and the time given to us for completion. 
 
-  Attributes: 
-	String text 
-  Methods: 
-	getLength -- determine the strings length
-	getDate -- using imported libraries, record the time and day of creation
-	parseLinkables -- parse for valid linkables within the tweet, return as an ArrayList
-		parseMention, parseURL, parseHashtag
+		Attributes 
+		  - String text 
+		Methods
+		  - getLength -- determine the strings length
+		  - getDate -- using imported libraries, record the time and day of creation
+		  - parseLinkables -- parse for valid linkables within the tweet, return as an ArrayList
+		  - parseMention, parseURL, parseHashtag
 
 ##Tweet
 
-  Attributes:
-	String text -- the actual body of the tweet, cannot exceed 140 characters, this part would be a tree
-	String Date-- can be used to keep track of the first 3200 tweets
-	int charlength -- the number of characters in the tweet, cannot exceed 140 characters 
-	linkables linkablesList[] -- array of each linkable item within the tweet
-	bool isDeleted -- can keep in database 
-	user likes[] -- an array of users who have liked this tweet (OUT OF SCOPE) 
-  Methods: 
-	String getText
-	String getDate
-	int getLength
-	mention[] getMentions
-	hastag[] getHashtags
-	URL[] getURLs
-	int likeCount (OUT OF SCOPE)
+		Attributes
+		 - String text -- the actual body of the tweet, cannot exceed 140 characters, this part would be a tree
+		 - String Date-- can be used to keep track of the first 3200 tweets
+		 - int charlength -- the number of characters in the tweet, cannot exceed 140 characters 
+		 - linkables linkablesList[] -- array of each linkable item within the tweet
+		 - bool isDeleted -- can keep in database 
+		 - user likes[] -- an array of users who have liked this tweet (OUT OF SCOPE) 
+		Methods
+		 - String getText
+		 - String getDate
+		 - int getLength
+		 - mention[] getMentions
+	  - hastag[] getHashtags
+	  - URL[] getURLs
+	  - int likeCount (OUT OF SCOPE)
 
 
 ##Linkables (superclass)
