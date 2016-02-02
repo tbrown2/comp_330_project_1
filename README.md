@@ -29,7 +29,10 @@ Taken from https://www.hashtags.org/featured/twitter-for-beginners-basic-guideli
 - users can respond to a tweet and reply to one another (out of scope)
 #Classes
 
-##TweetParser: Creates tweet object when given a string, parses the string and depending on the requirements will set attributes of the tweet.Ideally the tweet parser works in real time, in this case you could use an abstract syntax tree or a parsing tree while a user types and then create linkable objects on the fly, after a user presses enter then the tweet object gets created and all the attributes are set. However, for this project I am assuming that the user has already written a "tweet" in the form of a string, and the tweetParser object matches attributes not in realtime. While this is not ideal I feel that it matches the specifications of the project, and the time given to us for completion. 
+##TweetParser
+
+	 Creates tweet object when given a string, parses the string and depending on the requirements will set attributes of the tweet.Ideally the tweet parser works in real time, in this case you could use an abstract syntax tree or a parsing tree while a user types and then create linkable objects on the fly, after a user presses enter then the tweet object gets created and all the attributes are set. However, for this project I am assuming that the user has already written a "tweet" in the form of a string, and the tweetParser object matches attributes not in realtime. While this is not ideal I feel that it matches the specifications of the project, and the time given to us for completion. 
+
   Attributes: 
 	String text 
   Methods: 
@@ -39,6 +42,7 @@ Taken from https://www.hashtags.org/featured/twitter-for-beginners-basic-guideli
 		parseMention, parseURL, parseHashtag
 
 ##Tweet
+
   Attributes:
 	String text -- the actual body of the tweet, cannot exceed 140 characters, this part would be a tree
 	String Date-- can be used to keep track of the first 3200 tweets
@@ -46,8 +50,6 @@ Taken from https://www.hashtags.org/featured/twitter-for-beginners-basic-guideli
 	linkables linkablesList[] -- array of each linkable item within the tweet
 	bool isDeleted -- can keep in database 
 	user likes[] -- an array of users who have liked this tweet (OUT OF SCOPE) 
-	
-	
   Methods: 
 	String getText
 	String getDate
