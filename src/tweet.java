@@ -25,6 +25,11 @@ public class tweet
 		date = d;
 	}
 	
+	public boolean isDelete()
+	{
+		boolean d = isDeleted;
+		return d;
+	}
 	void Delete()
 	{
 		isDeleted = true;
@@ -45,18 +50,46 @@ public class tweet
 		return length;
 	}
 	
-	/**mention[] getMentions()
+	ArrayList<linkables> getMentions()
 	{
+		ArrayList<linkables> mentionList = new ArrayList<linkables>();
+		for (int i = 0; i<linkableList.size(); i++)
+		{
+			if (linkableList.get(i) instanceof mention)
+			{
+				System.out.println(linkableList.get(i).getText());
+				mentionList.add(linkableList.get(i));
+			}
+		}
+		return mentionList;
 	}
-	**/
 	
-	/**hashtag[] getHashtags()
+	ArrayList<linkables> getHashtags()
 	 {
+	 ArrayList<linkables> mentionList = new ArrayList<linkables>();
+		for (int i = 0; i<linkableList.size(); i++)
+		{
+			if (linkableList.get(i) instanceof hashtag)
+			{
+				System.out.println(linkableList.get(i).getText());
+				mentionList.add(linkableList.get(i));
+			}
+		}
+		return mentionList;
 	 }
-	 */
 	
-	/**URL[] getURLs()
+	ArrayList<linkables> getURLs()
 	 {
+		ArrayList<linkables> mentionList = new ArrayList<linkables>();
+		for (int i = 0; i<linkableList.size(); i++)
+		{
+			if (linkableList.get(i) instanceof URL)
+			{
+				System.out.println(linkableList.get(i).getText());
+				mentionList.add(linkableList.get(i));
+			}
+		}
+		return mentionList;
 	 }
-	 */
+
 }

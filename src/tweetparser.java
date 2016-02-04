@@ -22,6 +22,10 @@ public class tweetparser {
 		}			
 	}
 	
+	public tweet getTweet()
+	{
+		return tweet;
+	}
 	private boolean testLength()
 	{
 		if (potential_tweet.length() <= 140){
@@ -76,16 +80,21 @@ public class tweetparser {
 		//if they aren't then the link wont appear through the mention
 		//because creating a database with users is out of scope for this project, all mentions will be considered valid
 		//it;s a cop-out i know. 
-		if (start == tweet.getLength()-1) return start;
+		System.out.println("parsing mention");
+		if (start == tweet.getLength()-1) 
+		{
+			return start;
+		}
 		for (int i =start+1; i<tweet.getLength(); i++)
 		{
 			//hit a space
-			if (potential_tweet.substring(i)==" ")
+			if (potential_tweet.charAt(i)==' ')
 			{
 				if (validuser){
 					m = potential_tweet.substring(start, i);
 					mention mention = new mention(start, m.length(), m);
 					tweet.setLinkables(mention);
+					return i;
 				}
 				else {return start;}
 			}
@@ -117,19 +126,21 @@ public class tweetparser {
 	
 	private int parseHashtag(int start)
 	{
-		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		System.out.println("parsing hashtag");
+		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		String hashtagText;
 		//case where it is just a hashtag with nothing or special character after it (hashtags can only support alphabet)
 		//also tests if the # is at the very end of the tweet
-		if (!alphabet.contains(potential_tweet.substring(start+1)) || start == tweet.getLength()-1)
+		if (alphabet.indexOf(potential_tweet.charAt(start+1))<0 || start == tweet.getLength()-1)
 		{
+			System.out.println("returned because was not in alphabet");
 			return start;
 		}
 		
 		//we now know that there is at least a single letter preceding the #
 		for (int i= start+1; i<tweet.getLength(); i++)
 		{
-			if (!alphabet.contains(potential_tweet.substring(i)))
+			if (alphabet.indexOf(potential_tweet.charAt(start+1))<0)
 			{
 				hashtagText = potential_tweet.substring(start, i-1); //don't include the failed char
 				hashtag hashtagg = new hashtag (start, hashtagText.length(), hashtagText);
