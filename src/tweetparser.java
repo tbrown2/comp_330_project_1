@@ -1,6 +1,7 @@
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.regex.*;
 
 public class tweetparser {
 	String potential_tweet;
@@ -47,20 +48,44 @@ public class tweetparser {
 	
 	private boolean parseLinkables()
 	{
+		char c;
+		for (int i = 0; i < tweet.getLength(); i++)
+		{
+			c = potential_tweet.charAt(i);
+			switch (c){
+				case '@': parseMention(i);
+				case '#': parseHashtag(i);
+			}
+		}
+		parseURL();
 		return true;
 	}
 	
-	private boolean parseMention()
+	private boolean parseMention(int start)
 	{
 		return false;
 	}
 	
 	private boolean parseURL()
 	{
-		return false;
+		//code taken from http://blog.houen.net/java-get-url-from-string/
+		String regex = "\\(?\\b(http://|www[.])[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@#/%=~_()|]";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(potential_tweet);
+		while(m.find()) 
+		{
+			String urlStr = m.group();
+			if (urlStr.startsWith("(") && urlStr.endsWith(")"))
+			{
+				urlStr = urlStr.substring(1, urlStr.length() - 1);
+			}
+			URL url = new URL(m.start(), urlStr.length(), urlStr);
+			tweet.linkableList.add(url);
+		}
+		return true;
 	}
 	
-	private boolean parseHashtag()
+	private boolean parseHashtag(int start)
 	{
 		return false;
 	}

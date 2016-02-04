@@ -1,9 +1,11 @@
+import java.util.*;
+
 public class tweet 
 {
 	String text; 
 	String date; 
 	int length; 
-	linkables linkableList[];
+	ArrayList<linkables> linkableList = new ArrayList<linkables>();
 	boolean isDeleted;
 	
 	public tweet(String t)
@@ -15,7 +17,7 @@ public class tweet
 	
 	void setLinkables(linkables l) //pass a mention, hashtag, or URL to add to the linkables arrayList
 	{
-		
+		linkableList.add(l);
 	}
 	
 	void setDate (String d)
