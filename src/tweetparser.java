@@ -57,16 +57,12 @@ public class tweetparser {
 		for (int i = 0; i < tweet.getLength(); i++)
 		{
 			c = potential_tweet.charAt(i);
-			switch (c){
-				case '@': 
-					jump = parseMention(i);
-					i = jump;
-				case '#': 
-					jump = parseHashtag(i);
-					i = jump;
-				default: 
-					break;
-			}
+			if (c == '@'){ 
+				jump = parseMention(i);
+				i = jump;}
+			if (c == '#'){ 
+				jump = parseHashtag(i);
+				i = jump;}
 		}
 		parseURL();
 		return true;
@@ -140,8 +136,11 @@ public class tweetparser {
 		//we now know that there is at least a single letter preceding the #
 		for (int i= start+1; i<tweet.getLength(); i++)
 		{
-			if (alphabet.indexOf(potential_tweet.charAt(start+1))<0)
+			String test = new String("" + potential_tweet.charAt(start+1));
+			if (!alphabet.contains(test));
 			{
+				System.out.println(potential_tweet.charAt(start+1));
+				System.out.println("got into ze condition");
 				hashtagText = potential_tweet.substring(start, i-1); //don't include the failed char
 				hashtag hashtagg = new hashtag (start, hashtagText.length(), hashtagText);
 				tweet.setLinkables(hashtagg); // add hashtag to the tweet object
