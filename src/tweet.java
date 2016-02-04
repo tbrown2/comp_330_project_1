@@ -6,16 +6,26 @@ public class tweet
 	linkables linkableList[];
 	boolean isDeleted;
 	
-	public tweet(String t, boolean d)
+	public tweet(String t)
 	{
 		text = t; 
 		length = t.length();
-		d = false;
+		isDeleted = false;
 	}
 	
 	void setLinkables(linkables l) //pass a mention, hashtag, or URL to add to the linkables arrayList
 	{
 		
+	}
+	
+	void setDate (String d)
+	{
+		date = d;
+	}
+	
+	void Delete()
+	{
+		isDeleted = true;
 	}
 	
 	String getText()
