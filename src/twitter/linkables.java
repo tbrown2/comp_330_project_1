@@ -1,7 +1,8 @@
+package twitter;
 
 /** 
  * @author Tom
- * This will be a parent class in which all linkable items in a tweet will be derived from 
+ * This will be a  class in which all linkable items in a tweet will be derived from 
  * Specifically: Mentions, Hashtags, and URLs
  */
 public class linkables {

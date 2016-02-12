@@ -1,11 +1,12 @@
 package test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
-import linkables;
+import twitter.linkables;
 
 public class testLinkables {
 	linkables testLinkable = new linkables(0, 10, "superclass");
