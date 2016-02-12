@@ -1,4 +1,4 @@
-package twitter;
+package src.twitter;
 
 public class main {
 	

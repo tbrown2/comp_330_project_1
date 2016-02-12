@@ -1,4 +1,6 @@
-package test;
+package src.twitter;
+import src.twitter.*;
+import static org.junit.Assert.*;
 
 
 import static org.junit.Assert.assertEquals;
