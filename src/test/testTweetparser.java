@@ -20,7 +20,5 @@ public class testTweetparser {
 		tweet T2 = testT2.getTweet();
 		T2.getHashtags();
 		T2.getMentions();
-
 	}
-
 }
