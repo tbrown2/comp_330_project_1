@@ -1,4 +1,3 @@
-package src.twitter;
 import java.util.*;
 
 public class tweet 
@@ -56,7 +55,7 @@ public class tweet
 		ArrayList<linkables> mentionList = new ArrayList<linkables>();
 		for (int i = 0; i<linkableList.size(); i++)
 		{
-			if (linkableList.get(i) instanceof mention)
+			if (linkableList.get(i) instanceof linkables)
 			{
 				System.out.println(linkableList.get(i).getText());
 				mentionList.add(linkableList.get(i));
@@ -70,7 +69,7 @@ public class tweet
 	 ArrayList<linkables> mentionList = new ArrayList<linkables>();
 		for (int i = 0; i<linkableList.size(); i++)
 		{
-			if (linkableList.get(i) instanceof hashtag)
+			if (linkableList.get(i) instanceof linkables)
 			{
 				System.out.println(linkableList.get(i).getText());
 				mentionList.add(linkableList.get(i));
@@ -84,7 +83,7 @@ public class tweet
 		ArrayList<linkables> mentionList = new ArrayList<linkables>();
 		for (int i = 0; i<linkableList.size(); i++)
 		{
-			if (linkableList.get(i) instanceof URL)
+			if (linkableList.get(i) instanceof linkables)
 			{
 				System.out.println(linkableList.get(i).getText());
 				mentionList.add(linkableList.get(i));

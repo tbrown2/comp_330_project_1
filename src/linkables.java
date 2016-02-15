@@ -1,4 +1,3 @@
-package src.twitter;
 
 /** 
  * @author Tom

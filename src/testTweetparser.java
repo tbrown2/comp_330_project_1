@@ -1,10 +1,6 @@
-package src.twitter;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import twitter.tweet;
-import twitter.tweetparser;
 
 public class testTweetparser {
 	String test1 = ("Hey World, It's B! I'm so excited to invite you to my new http://beyonce.com  - we've been working hard, and it's finally ready for you XO");

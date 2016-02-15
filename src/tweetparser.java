@@ -1,4 +1,3 @@
-package src.twitter;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -89,7 +88,7 @@ public class tweetparser {
 			{
 				if (validuser){
 					m = potential_tweet.substring(start, i);
-					mention mention = new mention(start, m.length(), m);
+					linkables mention = new linkables(start, m.length(), m);
 					tweet.setLinkables(mention);
 					return i;
 				}
@@ -115,7 +114,7 @@ public class tweetparser {
 			{
 				urlStr = urlStr.substring(1, urlStr.length() - 1);
 			}
-			URL url = new URL(m.start(), urlStr.length(), urlStr);
+			linkables url = new linkables(m.start(), urlStr.length(), urlStr);
 			tweet.linkableList.add(url);
 		}
 		return true;
@@ -143,13 +142,13 @@ public class tweetparser {
 				System.out.println(potential_tweet.charAt(start+1));
 				System.out.println("got into ze condition");
 				hashtagText = potential_tweet.substring(start, i-1); //don't include the failed char
-				hashtag hashtagg = new hashtag (start, hashtagText.length(), hashtagText);
+				linkables hashtagg = new linkables (start, hashtagText.length(), hashtagText);
 				tweet.setLinkables(hashtagg); // add hashtag to the tweet object
 				return i-1; //going to add an additional 1 upon reaching the end of the loop in the linkablesParse method
 			}
 		}
 		hashtagText = potential_tweet.substring(start, tweet.getLength()-1);
-		hashtag hashtagg = new hashtag (start, hashtagText.length(), hashtagText);
+		linkables hashtagg = new linkables (start, hashtagText.length(), hashtagText);
 		tweet.setLinkables(hashtagg); // add hashtag to the tweet object
 		return tweet.getLength()-2; //going to add an additional 1 upon reaching the end of the loop in the linkablesParse method
 	}
