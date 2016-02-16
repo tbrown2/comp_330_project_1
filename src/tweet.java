@@ -3,8 +3,7 @@ import java.util.*;
  * @author Tom
  * Class that is designed after a tweet object for displaying on a website or storing in a database
  */
-public class tweet 
-{
+public class tweet {
 	private String text; 
 	private String date; 
 	private int length; 
@@ -37,13 +36,9 @@ public class tweet
 	//method that returns the links, must pass a type into the method to retrieve the relevant ArrayList
 	ArrayList<linkables> getLinks(String type) {
 		ArrayList<linkables> List;
-		
 		if (type.toLowerCase() == "mention" || type.contains("m")) List = mentions;
 		else if (type.toLowerCase() == "hashtag" || type.contains("h")) List = hashtags;
-		else List = URLs;
-			
-		for (linkables linkable: List) { System.out.println(linkable.getText()); }
-		
+		else List = URLs;				
 		return List;
 	}
 }

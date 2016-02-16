@@ -19,21 +19,18 @@ public class testTweet {
 	}
 	
 	@Test
-	public void testDate()
-	{
+	public void testDate() {
 		testTweet2.setDate("4/12");
 		assertEquals (testTweet2.getDate(), "4/12");
 		assertTrue (testTweet2.getDate()!= null);
 	}
 	@Test 
-	public void testLength()
-	{
+	public void testLength() {
 		assert(testTweet.getLength() != 1);
 		assert (testTweet2.getLength() == 135);
 	}
 	@Test
-	public void testgetLinks()
-	{
+	public void testgetLinks() {
 		assert (testTweet3.getLinks("mentions").size() == 4);
 		assert (testTweet3.getLinks("URLs").get(0)==null);
 		assert (testTweet3.getLinks("haashhhhtaggggssss").get(0).getText()=="LADaily");

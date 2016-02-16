@@ -66,7 +66,6 @@ public class tweetparser {
 			String mentionStr = m.group();
 			linkables mention = new linkables(m.start(), mentionStr.length(), mentionStr);
 			mentions.add(mention);
-			System.out.println(mentionStr);
 		}
 		tweet.mentions = mentions;
 		return true;
@@ -87,7 +86,6 @@ public class tweetparser {
 			}
 			linkables url = new linkables(m.start(), urlStr.length(), urlStr);
 			URLs.add(url);
-			System.out.println(urlStr);
 		}
 		tweet.URLs = URLs;
 		return true;
@@ -103,7 +101,6 @@ public class tweetparser {
 			String hashtagStr = m.group();
 			linkables hashtag = new linkables (m.start(), hashtagStr.length(), hashtagStr);
 			hashtags.add(hashtag);
-			System.out.println(hashtagStr);
 		}
 		tweet.hashtags = hashtags;
 		return true;
