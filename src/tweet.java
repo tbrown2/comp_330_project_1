@@ -1,66 +1,49 @@
 import java.util.*;
-
+/** 
+ * @author Tom
+ * Class that is designed after a tweet object for displaying on a website or storing in a database
+ */
 public class tweet 
 {
 	String text; 
 	String date; 
 	int length; 
-	ArrayList<linkables> linkableList = new ArrayList<linkables>();
-	boolean isDeleted;
+	ArrayList<linkables> mentions = new ArrayList<linkables>();
+	ArrayList<linkables> URLs = new ArrayList<linkables>();
+	ArrayList<linkables> hashtags = new ArrayList<linkables>();
+	public boolean isDeleted;
 	
-	public tweet(String t)
-	{
-		text = t; 
-		length = t.length();
+	public tweet(String message) {
+		text = message; 
+		length = message.length();
 		isDeleted = false;
 	}
 	
-	void setLinkables(linkables l) //pass a mention, hashtag, or URL to add to the linkables arrayList
-	{
-		linkableList.add(l);
-	}
-	
-	void setDate (String d)
-	{
+	void setDate (String d) {
 		date = d;
 	}
 	
-	public boolean isDelete()
-	{
+	public boolean Delete() {
 		boolean d = isDeleted;
 		return d;
 	}
-	void Delete()
-	{
-		isDeleted = true;
-	}
 	
-	String getText()
-	{
-		return text;
-	}
+	String getText() { return text; }
 	
-	String getDate()
-	{
-		return date;
-	}
+	String getDate() { return date; }
 	
-	int getLength()
-	{
-		return length;
-	}
+	int getLength() { return length; }
 	
-	ArrayList<linkables> getMentions()
-	{
-		ArrayList<linkables> mentionList = new ArrayList<linkables>();
-		for (int i = 0; i<linkableList.size(); i++)
-		{
-			if (linkableList.get(i) instanceof linkables)
-			{
-				System.out.println(linkableList.get(i).getText());
-				mentionList.add(linkableList.get(i));
-			}
-		}
-		return mentionList;
+	//method that returns the links, must pass a type into the method to retrieve the relevant ArrayList
+	ArrayList<linkables> getLinks(String type) {
+		ArrayList<linkables> List;
+		
+		if (type.toLowerCase() == "mention" || type.contains("m")) List = mentions;
+		else if (type.toLowerCase() == "hashtag" || type.contains("h")) List = hashtags;
+		else List = URLs;
+			
+		for (linkables linkable: List) { System.out.println(linkable.getText()); }
+		
+		return List;
 	}
 }

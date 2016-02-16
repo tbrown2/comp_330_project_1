@@ -9,25 +9,15 @@ public class linkables {
 	int length; //length of the linkable 
 	String text; //actual text of the linkable
 	
-	public linkables(int s, int l, String t)
-	{
-		startlocation = s;
-		length = l;
-		text = t;
+	public linkables(int start, int len, String message) {
+		startlocation = start;
+		length = len;
+		text = message;
 	}
 	
-	public int getLocation ()
-	{
-		return startlocation;
-	}
+	public int getLocation () { return startlocation; }
 	
-	public int getLength ()
-	{
-		return length;
-	}
+	public int getLength () { return length; }
 	
-	public String getText()
-	{
-		return text;
-	}
+	public String getText() { return text; }
 }
