@@ -63,33 +63,4 @@ public class tweet
 		}
 		return mentionList;
 	}
-	
-	ArrayList<linkables> getHashtags()
-	 {
-	 ArrayList<linkables> mentionList = new ArrayList<linkables>();
-		for (int i = 0; i<linkableList.size(); i++)
-		{
-			if (linkableList.get(i) instanceof linkables)
-			{
-				System.out.println(linkableList.get(i).getText());
-				mentionList.add(linkableList.get(i));
-			}
-		}
-		return mentionList;
-	 }
-	
-	ArrayList<linkables> getURLs()
-	 {
-		ArrayList<linkables> mentionList = new ArrayList<linkables>();
-		for (int i = 0; i<linkableList.size(); i++)
-		{
-			if (linkableList.get(i) instanceof linkables)
-			{
-				System.out.println(linkableList.get(i).getText());
-				mentionList.add(linkableList.get(i));
-			}
-		}
-		return mentionList;
-	 }
-
 }

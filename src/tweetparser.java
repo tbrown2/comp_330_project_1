@@ -2,23 +2,29 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class tweetparser {
 	String potential_tweet;
 	tweet tweet; 
 	boolean created = false;
-	
+	ArrayList<linkables> mentions = new ArrayList<linkables>();
+	ArrayList<linkables> URLs = new ArrayList<linkables>();
+	ArrayList<linkables> hashtags = new ArrayList<linkables>();
+
 	public tweetparser (String t)
 	{
-		potential_tweet = t;
-		if (testLength())
+		potential_tweet = t; //pass the message into the potential tweet
+		if (testLength()) //if at most 140 characters long
 		{
-			setDate();
-			parseLinkables();
+			setDate(); //set the date of the tweet
+			parseLinkables(); //parse all the valid mentions, hashtags, and urls out
 		}
 		else 
 		{
-			System.out.print("NOT VALID STRING");
+			System.out.print("NOT VALID STRING"); //tell the user that it was a flop
 		}			
 	}
 	
@@ -26,6 +32,7 @@ public class tweetparser {
 	{
 		return tweet;
 	}
+	
 	private boolean testLength()
 	{
 		if (potential_tweet.length() <= 140){
@@ -52,53 +59,25 @@ public class tweetparser {
 	
 	private boolean parseLinkables()
 	{
-		char c;
-		int jump;
-		for (int i = 0; i < tweet.getLength(); i++)
-		{
-			c = potential_tweet.charAt(i);
-			if (c == '@'){ 
-				jump = parseMention(i);
-				i = jump;}
-			if (c == '#'){ 
-				jump = parseHashtag(i);
-				i = jump;}
-		}
+		parseMention();
+		parseHashtag();
 		parseURL();
 		return true;
 	}
 	
-	private int parseMention(int start)
+	private boolean parseMention()
 	{
-		String m; 
-		boolean validuser = true; 
-		//in twitter you need to test whether the user is in the system when attempting a mention
-		//if they aren't then the link wont appear through the mention
-		//because creating a database with users is out of scope for this project, all mentions will be considered valid
-		//it;s a cop-out i know. 
-		System.out.println("parsing mention");
-		if (start == tweet.getLength()-1) 
+		String regex = "[@]+([A-Za-z0-9-_]+)";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(potential_tweet);
+		while (m.find())
 		{
-			return start;
+			String mentionStr = m.group();
+			linkables mention = new linkables(m.start(), mentionStr.length(), mentionStr);
+			mentions.add(mention);
+			System.out.println(mentionStr);
 		}
-		for (int i =start+1; i<tweet.getLength(); i++)
-		{
-			//hit a space
-			if (potential_tweet.charAt(i)==' ')
-			{
-				if (validuser){
-					m = potential_tweet.substring(start, i);
-					linkables mention = new linkables(start, m.length(), m);
-					tweet.setLinkables(mention);
-					return i;
-				}
-				else {return start;}
-			}
-			//maximum number of characters for a username is 15
-			if (i-start == 15)
-			{return start;}
-		}
-		return start;
+		return true;
 	}
 	
 	private boolean parseURL()
@@ -115,41 +94,24 @@ public class tweetparser {
 				urlStr = urlStr.substring(1, urlStr.length() - 1);
 			}
 			linkables url = new linkables(m.start(), urlStr.length(), urlStr);
-			tweet.linkableList.add(url);
+			URLs.add(url);
+			System.out.println(urlStr);
 		}
 		return true;
 	}
 	
-	private int parseHashtag(int start)
+	private boolean parseHashtag()
 	{
-		System.out.println("parsing hashtag");
-		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		String hashtagText;
-		//case where it is just a hashtag with nothing or special character after it (hashtags can only support alphabet)
-		//also tests if the # is at the very end of the tweet
-		if (alphabet.indexOf(potential_tweet.charAt(start+1))<0 || start == tweet.getLength()-1)
+        String regex = "[#]+([A-Za-z]+[A-Za-z0-9-_]*)";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(potential_tweet);
+		while (m.find())
 		{
-			System.out.println("returned because was not in alphabet");
-			return start;
+			String hashtagStr = m.group();
+			linkables hashtag = new linkables (m.start(), hashtagStr.length(), hashtagStr);
+			hashtags.add(hashtag);
+			System.out.println(hashtagStr);
 		}
-		
-		//we now know that there is at least a single letter preceding the #
-		for (int i= start+1; i<tweet.getLength(); i++)
-		{
-			String test = new String("" + potential_tweet.charAt(start+1));
-			if (!alphabet.contains(test));
-			{
-				System.out.println(potential_tweet.charAt(start+1));
-				System.out.println("got into ze condition");
-				hashtagText = potential_tweet.substring(start, i-1); //don't include the failed char
-				linkables hashtagg = new linkables (start, hashtagText.length(), hashtagText);
-				tweet.setLinkables(hashtagg); // add hashtag to the tweet object
-				return i-1; //going to add an additional 1 upon reaching the end of the loop in the linkablesParse method
-			}
-		}
-		hashtagText = potential_tweet.substring(start, tweet.getLength()-1);
-		linkables hashtagg = new linkables (start, hashtagText.length(), hashtagText);
-		tweet.setLinkables(hashtagg); // add hashtag to the tweet object
-		return tweet.getLength()-2; //going to add an additional 1 upon reaching the end of the loop in the linkablesParse method
+		return true;
 	}
 }
