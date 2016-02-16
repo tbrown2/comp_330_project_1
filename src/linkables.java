@@ -15,7 +15,7 @@ public class linkables {
 		text = message;
 	}
 	
-	public int getLocation () { return startlocation; }
+	public int getStartLocation () { return startlocation; }
 	
 	public int getLength () { return length; }
 	

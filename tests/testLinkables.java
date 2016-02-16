@@ -8,8 +8,8 @@ public class testLinkables {
 	@Test
 	public void testgetLocation() 
 	{
-		assertEquals (testLinkable.getLocation(), 0);
-		assertFalse (testLinkable.getLocation() == 1);
+		assertEquals (testLinkable.getStartLocation(), 0);
+		assertFalse (testLinkable.getStartLocation() == 1);
 	}
 	@Test
 	public void testgetLength()
