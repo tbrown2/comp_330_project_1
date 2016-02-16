@@ -5,9 +5,9 @@
  * Specifically: Mentions, Hashtags, and URLs
  */
 public class linkables {
-	int startlocation; //which index in the string the linkable starts 
-	int length; //length of the linkable 
-	String text; //actual text of the linkable
+	private int startlocation; //which index in the string the linkable starts 
+	private int length; //length of the linkable 
+	private String text; //actual text of the linkable
 	
 	public linkables(int start, int len, String message) {
 		startlocation = start;

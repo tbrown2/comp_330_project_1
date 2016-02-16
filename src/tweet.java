@@ -5,12 +5,12 @@ import java.util.*;
  */
 public class tweet 
 {
-	String text; 
-	String date; 
-	int length; 
-	ArrayList<linkables> mentions = new ArrayList<linkables>();
-	ArrayList<linkables> URLs = new ArrayList<linkables>();
-	ArrayList<linkables> hashtags = new ArrayList<linkables>();
+	private String text; 
+	private String date; 
+	private int length; 
+	public ArrayList<linkables> mentions = new ArrayList<linkables>();
+	public ArrayList<linkables> URLs = new ArrayList<linkables>();
+	public ArrayList<linkables> hashtags = new ArrayList<linkables>();
 	public boolean isDeleted;
 	
 	public tweet(String message) {

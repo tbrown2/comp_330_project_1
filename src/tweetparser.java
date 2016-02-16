@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * Class used to test potential string for qualifications to become a tweet. If so, parses out all the mentions, hashtags/topics, and URLs
  */
 public class tweetparser {
-	String potential_tweet;
-	tweet tweet; 
-	boolean created = false;
-	ArrayList<linkables> mentions = new ArrayList<linkables>();
-	ArrayList<linkables> URLs = new ArrayList<linkables>();
-	ArrayList<linkables> hashtags = new ArrayList<linkables>();
+	private String potential_tweet;
+	private tweet tweet; 
+	private boolean created = false;
+	private ArrayList<linkables> mentions = new ArrayList<linkables>();
+	private ArrayList<linkables> URLs = new ArrayList<linkables>();
+	private ArrayList<linkables> hashtags = new ArrayList<linkables>();
 
 	public tweetparser (String t) {
 		potential_tweet = t; //pass the message into the potential tweet
